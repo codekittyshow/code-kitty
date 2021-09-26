@@ -11,9 +11,18 @@ import { FeedComponent } from './components/feed/feed.component';
 import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { FooterComponent } from './components/common/footer/footer.component';
 import { LoaderComponent } from './components/common/loader/loader.component';
+import { Page404Component } from './components/page404/page404.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, FeedComponent, NavbarComponent, FooterComponent, LoaderComponent],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    FeedComponent,
+    NavbarComponent,
+    FooterComponent,
+    LoaderComponent,
+  ],
+
   imports: [
     BrowserModule,
     AppRoutingModule,
