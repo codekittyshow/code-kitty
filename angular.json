@@ -114,6 +114,7 @@
   },
   "defaultProject": "code-kitty",
   "cli": {
+    "analytics": "c06d0b01-1125-4fe1-a129-5cfe813afc64",
     "defaultCollection": "@angular-eslint/schematics"
   }
 }

@@ -1,0 +1,51 @@
+.navigationBar {
+  filter: drop-shadow(0px 16px 15px rgba(172, 172, 172, 0.200));
+  z-index: 10;
+}
+
+.profilrImgCircle {
+  position: fixed;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  background: darkred;
+  justify-self: center;
+}
+
+@media only screen and (max-width: 425px) {
+  .catLogo {
+    position: absolute;
+    display: flex;
+    top: 10px;
+    flex-direction: row;
+    justify-content: flex-start !important;
+    align-items: center;
+  }
+
+}
+
+@media only screen and (max-width: 768px) {
+  .navgLinks {
+    margin-top: 45px;
+  }
+
+  .catLogo {
+    position: absolute;
+    top: 18px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .profile {
+    position: absolute;
+    display: flex;
+    top: 15px;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 0;
+  }
+}
+

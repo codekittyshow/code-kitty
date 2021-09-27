@@ -1,7 +1,48 @@
-<div class="row align-items-center h-100">
-  <div class="col-6 mx-auto text-center">
-    <div class="spinner-border" style="width: 3rem; height: 3rem" role="status">
-      <span class="sr-only">Loading...</span>
+<!--navigation bar-->
+<nav class="navbar navbar-expand-lg navbar-light bg-white navigationBar">
+  <div class="container-fluid">
+    <button aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"
+            class="navbar-toggler"
+            data-bs-target="#navbarNavDropdown" data-bs-toggle="collapse" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <div class="row col-12 content-row">
+        <div class="col-lg-4 col-sm-12 navgLinks">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a aria-current="page" class="nav-link active" href="#">Feed</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">MyPots</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Notification</a>
+            </li>
+          </ul>
+        </div>
+        <div
+          class="d-flex justify-content-lg-center align-items-lg-center justify-content-md-start col-lg-4 col-sm-12 catLogo">
+          <img alt="Cat Logo" src="../../../../assets/images/cat-logo.png" width="32">
+        </div>
+        <div class="col-lg-4 d-flex justify-content-end align-items-center pt-md-0 pt-sm-0 col-sm-12 profile pr-lg-0">
+          <ul class="navbar-nav mr-lg-0 mr-sm-0">
+            <li class="nav-item dropdown">
+              <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                 id="navbarDropdownMenuLink" role="button">
+                <span class="profilrImgCircle mr-lg-2  mr-md-2 mr-sm-5 text-center text-white">I</span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                IT17031776 Safnaj M.M.A
+              </a>
+              <ul aria-labelledby="navbarDropdownMenuLink" class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+</nav>
