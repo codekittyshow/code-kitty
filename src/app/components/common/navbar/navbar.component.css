@@ -12,7 +12,7 @@
   justify-self: center;
 }
 
-@media only screen and (max-width: 425px) {
+@media all and (max-width: 425px) {
   .catLogo {
     position: absolute;
     display: flex;
@@ -24,15 +24,43 @@
 
 }
 
-@media only screen and (max-width: 768px) {
+
+@media all and (max-width: 767px) {
   .navgLinks {
-    margin-top: 45px;
+    margin-top: 75px;
+  }
+
+  .catLogo {
+    position: absolute;
+    display: flex;
+    top: 10px;
+    flex-direction: row;
+    justify-content: flex-start !important;
+    align-items: center;
+  }
+
+  .profile {
+    position: absolute;
+    display: flex;
+    top: 19px;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-right: 0;
+  }
+}
+
+
+@media all and (max-width: 991px) {
+  .navgLinks {
+    margin-top: 75px;
   }
 
   .catLogo {
     position: absolute;
     top: 18px;
     display: flex;
+    left: 7px;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -41,7 +69,7 @@
   .profile {
     position: absolute;
     display: flex;
-    top: 15px;
+    top: 19px;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
