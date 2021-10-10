@@ -15,8 +15,6 @@ export class HomeComponent implements OnInit {
       if (user) {
         //console.log(user);
         this.router.navigate(['/feed']);
-      } else {
-        this.router.navigate(['/']);
       }
     });
   }

@@ -1,2 +1,40 @@
 <app-navbar></app-navbar>
-<h1>Feed Works</h1>
+<div class="container">
+  <div class="d-flex justify-content-center row mt-4">
+    <div class="col-md-3">
+      <div class="sticky-top">
+        <div class="list-group">
+          <a class="list-group-item list-group-item-action">All Categories</a>
+
+          <a class="list-group-item list-group-item-action"> Pet Care </a>
+          <a class="list-group-item list-group-item-action"> Medical </a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="feed">
+        <div
+          class="
+            d-flex
+            justify-content-between
+            align-items-center
+            p-3
+            bg-white
+            border
+            shadow
+            rounded-3
+          "
+        >
+          <div class="feed-text px-2">
+            <h6 class="text-black-50 mt-2">Any tips on your mind..?</h6>
+          </div>
+          <button class="btn btn-primary rounded-pill">New Post</button>
+        </div>
+        <app-loader *ngIf="loading; else postFeed"></app-loader>
+        <ng-template #postFeed>
+          <app-post-card></app-post-card>
+        </ng-template>
+      </div>
+    </div>
+  </div>
+</div>
