@@ -21,6 +21,7 @@ import { Page404Component } from './components/page404/page404.component';
     NavbarComponent,
     FooterComponent,
     LoaderComponent,
+    Page404Component
   ],
 
   imports: [
@@ -33,4 +34,4 @@ import { Page404Component } from './components/page404/page404.component';
   providers: [],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
