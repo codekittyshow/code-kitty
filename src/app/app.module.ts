@@ -12,6 +12,7 @@ import { NavbarComponent } from './components/common/navbar/navbar.component';
 import { FooterComponent } from './components/common/footer/footer.component';
 import { LoaderComponent } from './components/common/loader/loader.component';
 import { Page404Component } from './components/page404/page404.component';
+import { PostCardComponent } from './components/feed/post-card/post-card.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { Page404Component } from './components/page404/page404.component';
     NavbarComponent,
     FooterComponent,
     LoaderComponent,
-    Page404Component
+    Page404Component,
+    PostCardComponent
   ],
 
   imports: [
