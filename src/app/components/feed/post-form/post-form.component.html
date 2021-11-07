@@ -1,0 +1,81 @@
+<div class="modal-header">
+  <h4 class="modal-title">Create New Post</h4>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-md-12">
+      <form #postForm="ngForm" (ngSubmit)="publishPost(postForm.value)">
+        <div class="form-group mb-3">
+          <textarea
+            ngModel
+            name="description"
+            id="description"
+            class="form-control"
+            cols="20"
+            rows="4"
+            placeholder="What's on your mind ?"
+            required
+          ></textarea>
+        </div>
+        <div class="form-group mb-3">
+          <select
+            ngModel
+            name="categoryName"
+            id="categoryName"
+            class="form-control"
+            required
+          >
+            <option value="" selected>Choose Category</option>
+            <option value="Food">Food</option>
+            <option value="Medical">Medical</option>
+            <option value="Care">Care</option>
+          </select>
+        </div>
+        <div class="form-group mb-3">
+          <input
+            name="imageURL"
+            id="imageURL"
+            type="file"
+            class="form-control"
+            (change)="imgPreview($event)"
+          />
+        </div>
+        <div class="col-3" *ngIf="url">
+          <img [src]="url" height="100" />
+        </div>
+
+        <!--Upload Progress -->
+        <div *ngIf="progressValue | async as val">
+          <progress
+            type="warning"
+            [value]="val"
+            style="height: 7mm; width: 50%"
+            max="100"
+          ></progress>
+          <br />
+          <span
+            *ngIf="val < 100"
+            style="color: rgb(255, 60, 0); font-size: 17px; font-weight: 410"
+            >Uploading {{ val | number }}% </span
+          ><span
+            *ngIf="val == 100"
+            style="color: rgb(1, 153, 34); font-size: 17px; font-weight: 410"
+            >Completed !</span
+          >
+        </div>
+        <!--Upload Progress End -->
+
+        <div class="col mt-4 float-end">
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="activeModal.close('Close click')"
+          >
+            Close
+          </button>
+          <button type="submit" class="btn btn-primary mx-2">Publish</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

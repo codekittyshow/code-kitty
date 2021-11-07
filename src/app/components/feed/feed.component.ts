@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { PostFormComponent } from './post-form/post-form.component';
 
 @Component({
   selector: 'app-feed',
@@ -7,7 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedComponent implements OnInit {
   loading: boolean = true;
-  constructor() {}
+  constructor(public modalService: NgbModal) {}
 
   ngOnInit(): void {}
+
+  openPostModal() {
+    const modalRef = this.modalService.open(PostFormComponent, {
+      size: 'lg',
+      backdrop: 'static',
+    });
+  }
 }

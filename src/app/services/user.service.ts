@@ -1,28 +1,27 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
-import { Post } from '../models/post.model';
+import { Injectable } from '@angular/core';
+import { User } from '../models/user.model';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
 })
-export class PostService {
+export class UserService {
   private apiURL: string;
   private apiPath: string;
   private fullUrl: string;
 
   constructor(private http: HttpClient) {
     this.apiURL = environment.apiURL;
-    this.apiPath = environment.postAPIPath;
+    this.apiPath = environment.userAPIPath;
     this.fullUrl = `${this.apiURL}/${this.apiPath}`;
   }
 
   /**
-   * Create new Post
-   * @param post
+   * Add new User
+   * @param user
    */
-
-  public addPost(post: Post) {
-    return this.http.post<Post>(this.fullUrl, post);
+  public addUser(user: User) {
+    return this.http.post(this.fullUrl, user);
   }
 }

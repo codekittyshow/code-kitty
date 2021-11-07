@@ -2,14 +2,7 @@
 <div class="container">
   <div class="d-flex justify-content-center row mt-4">
     <div class="col-md-3">
-      <div class="sticky-top">
-        <div class="list-group">
-          <a class="list-group-item list-group-item-action">All Categories</a>
-
-          <a class="list-group-item list-group-item-action"> Pet Care </a>
-          <a class="list-group-item list-group-item-action"> Medical </a>
-        </div>
-      </div>
+      <app-category></app-category>
     </div>
     <div class="col-md-8">
       <div class="feed">
@@ -28,9 +21,14 @@
           <div class="feed-text px-2">
             <h6 class="text-black-50 mt-2">Any tips on your mind..?</h6>
           </div>
-          <button class="btn btn-primary rounded-pill">New Post</button>
+          <button
+            class="btn btn-primary rounded-pill"
+            (click)="openPostModal()"
+          >
+            New Post
+          </button>
         </div>
-        <app-loader *ngIf="loading; else postFeed"></app-loader>
+        <app-loader *ngIf="!loading; else postFeed"></app-loader>
         <ng-template #postFeed>
           <app-post-card></app-post-card>
         </ng-template>
