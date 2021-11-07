@@ -15,6 +15,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class AuthGuard implements CanActivate {
   constructor(private auth: AuthService, private router: Router) {}
+
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> | boolean {
     return this.auth.user$.pipe(
       map((user) => {
