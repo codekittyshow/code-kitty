@@ -29,7 +29,7 @@
       <img src="../../../../assets/images/cat-logo.png" height="50" alt="" />
     </a>
 
-    <div class="nav navbar-header navbar-profile pull-right me-4">
+    <div *ngIf="user" class="nav navbar-header navbar-profile pull-right me-4">
       <div class="ml-4 dropdown d-inline">
         <a
           class="btn dropdown-toggle"
@@ -39,14 +39,14 @@
           aria-expanded="false"
         >
           <figure class="avatar avatar-nav">
-            <img src="#" class="rounded-circle" alt="" />
+            <img [src]="user.photoURL" class="rounded-circle" alt="" />
           </figure>
-          <span>Safnaj</span>
+          <span>{{ user.displayName }}</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="dropDownMenuButton">
           <a class="dropdown-item">Profile</a>
           <a class="dropdown-item">Settings</a>
-          <a class="dropdown-item text-danger">Logout</a>
+          <a class="dropdown-item text-danger" (click)="logout()">Logout</a>
         </div>
       </div>
     </div>
