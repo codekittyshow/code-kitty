@@ -58,7 +58,7 @@
   bottom: 0;
   left: 0;
   width: 100%;
-  overflow: hidden;
+  overflow:hidden;
   line-height: 0;
   transform: rotate(180deg);
 }
@@ -67,6 +67,6 @@
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
-  height: 140px;
+  height: 29.675vh;
   transform: rotateY(180deg);
 }
