@@ -67,6 +67,6 @@
   position: relative;
   display: block;
   width: calc(100% + 1.3px);
-  height: 140px;
+  height: 29.675vh;
   transform: rotateY(180deg);
 }
