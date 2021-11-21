@@ -10,4 +10,6 @@ export const environment = {
   },
   apiURL: 'https://code-kitty-prep-api.herokuapp.com/api/v1',
   postAPIPath: 'post',
+  categoryAPIPath: 'category',
+  userAPIPath: 'user',
 };
