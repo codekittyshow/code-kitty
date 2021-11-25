@@ -31,8 +31,8 @@
         <app-loader *ngIf="!loading; else postFeed"></app-loader>
 
         <ng-template #postFeed>
-          <div class="row" *ngIf="filterdPost" >
-            <div *ngFor="let post of filterdPost;let i = inndex">
+          <div class="row" *ngIf="posts" >
+            <div *ngFor="let post of posts;let i = index">
               <div class="col">
 
                 <app-post-card [post]="post"></app-post-card>

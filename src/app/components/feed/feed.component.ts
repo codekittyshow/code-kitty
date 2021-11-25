@@ -15,7 +15,9 @@ export class FeedComponent implements OnInit {
   posts:Post[] = [];
   constructor(public modalService: NgbModal,public postservice: PostService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.getAllPosts();
+  }
 
   openPostModal() {
     const modalRef = this.modalService.open(PostFormComponent, {
@@ -25,19 +27,15 @@ export class FeedComponent implements OnInit {
   }
 
   getAllPosts() { 
-      this.postservice.getAllPostsData().subscribe((data) => {
-        this.posts = data;
-    });
-      
       this. loading = true; 
       this.postservice.getAllPostsData().subscribe (
-        (response) => { 
-          if (response. success) {
+        (response: { success: any; data: Post[]; }) => { 
+          if (response.success) {
             this.posts = response.data.reverse();
           }
           this. loading = false;
         },
-      (error) => {
+      (error: { message: string; }) => {
       console.error('Error : ' + error.message);
       }
       );
