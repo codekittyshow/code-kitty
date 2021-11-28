@@ -17,6 +17,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CategoryComponent } from './components/feed/category/category.component';
 import { PostFormComponent } from './components/feed/post-form/post-form.component';
 import { FormsModule } from '@angular/forms';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    ToastrModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent],
