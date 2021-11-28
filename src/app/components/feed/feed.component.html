@@ -29,9 +29,20 @@
           </button>
         </div>
         <app-loader *ngIf="!loading; else postFeed"></app-loader>
+
         <ng-template #postFeed>
-          <app-post-card></app-post-card>
+          <div class="row" *ngIf="posts" >
+            <div *ngFor="let post of posts;let i = index">
+              <div class="col">
+
+                <app-post-card [post]="post"></app-post-card>
+              </div>
+            </div>
+
+          </div>
         </ng-template>
+
+
       </div>
     </div>
   </div>

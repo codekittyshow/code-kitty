@@ -1,52 +1,49 @@
-<div class="row">
+<div class="bg-white border mt-4" *ngIf="post">
   <div>
-    <div class="col">
-      <div class="bg-white border mt-4">
-        <div>
-          <div
-            class="
-              d-flex
-              flex-row
-              justify-content-between
-              align-items-center
-              p-2
-              border-bottom
-            "
+    <div
+      class="
+        d-flex
+        flex-row
+        justify-content-between
+        align-items-center
+        p-2
+        border-bottom
+      "
+    >
+      <div class="d-flex flex-row align-items-center feed-text px-2">
+        <img
+          [src]="post.user.photoURL"
+          *ngIf="post.user.photoURL"
+          class="rounded-circle me-2"
+          width="45"
+          alt=""
+        />
+        <div class="d-flex flex-column flex-wrap ml-2">
+          <span class="font-weight-bold">{{ post.user.displayName }}</span
+          ><span class="text-black-50 time" style="font-size: 10pt"
+            >Published on {{ post.createdDate | date }} |
+            {{ post.categoryName }}</span
           >
-            <div class="d-flex flex-row align-items-center feed-text px-2">
-              <img
-                src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
-                class="rounded-circle me-2"
-                width="45"
-                alt=""
-              />
-              <div class="d-flex flex-column flex-wrap ml-2">
-                <span class="font-weight-bold">User</span
-                ><span class="text-black-50 time" style="font-size: 10pt"
-                  >Published on 13th October 2021 | Pet Care</span
-                >
-              </div>
-            </div>
-            <div class="feed-icon px-2">
-              <i class="fa fa-ellipsis-v text-black-50"></i>
-            </div>
-          </div>
-        </div>
-        <div class="p-2 px-3">
-          <span
-            >Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras
-            malesuada, lorem eu pulvinar elementum, tellus ex efficitur massa,
-            nec tincidunt nibh justo at augue. Proin aliquet quam vel gravida
-            viverra. Cras id cursus lacus.
-          </span>
-        </div>
-        <div class="feed-image p-2 px-3">
-          <img
-            class="img-fluid img-responsive"
-            src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8dXNlcnxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80"
-          />
         </div>
       </div>
+      <div class="feed-icon px-2">
+        <i class="fa fa-ellipsis-v text-black-50"></i>
+      </div>
     </div>
+  </div>
+  <div class="p-2 px-3">
+    <span>{{ post.description }}</span>
+  </div>
+  <div class="feed-image p-2 px-3">
+    <img
+      class="img-fluid img-responsive"
+      [src]="post.imageURL"
+      *ngIf="post.imageURL"
+      alt=""
+    />
+  </div>
+  <div class="d-flex justify-content-end socials p-2 py-3">
+    <i class="fa fa-thumbs-up"></i><i class="fa fa-comments-o"></i
+    ><i class="fa fa-share"></i>
   </div>
 </div>

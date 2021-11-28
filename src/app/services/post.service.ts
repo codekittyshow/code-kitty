@@ -25,4 +25,11 @@ export class PostService {
   public addPost(post: Post) {
     return this.http.post<Post>(this.fullUrl, post);
   }
+
+  // GET All posts with users
+  public getAllPostsData() {
+    const PATH = `${this.fullUrl}/users/all`;
+    return this.http.get<{success:boolean ; data : Post[];message:string}>(PATH);
+  }
+
 }
