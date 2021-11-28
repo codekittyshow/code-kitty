@@ -3,6 +3,10 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { PostFormComponent } from './post-form/post-form.component';
 import { Post } from '../../models/post.model';
 import { PostService } from '../../services/post.service';
+import { MessageService } from 'src/app/services/message.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { switchMap } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-feed',
@@ -11,12 +15,30 @@ import { PostService } from '../../services/post.service';
 })
 export class FeedComponent implements OnInit {
   loading: boolean = true;
+  category: string | any;
+  posts: Post[] = [];
+  filteredPosts: Post[] = [];
 
-  posts:Post[] = [];
-  constructor(public modalService: NgbModal,public postservice: PostService) {}
+  constructor(
+    router: Router,
+    auth: AuthService,
+    private route: ActivatedRoute,
+    public modalService: NgbModal,
+    public postService: PostService,
+    private messageService: MessageService
+  ) {
+    auth.user$.subscribe((user) => {
+      if (!user) {
+        router.navigate(['/']);
+      }
+    });
+  }
 
   ngOnInit(): void {
-    this.getAllPosts();
+    this.populatePosts();
+    this.messageService.getMessage().subscribe((message) => {
+      this.populatePosts();
+    });
   }
 
   openPostModal() {
@@ -26,18 +48,27 @@ export class FeedComponent implements OnInit {
     });
   }
 
-  getAllPosts() { 
-      this. loading = true; 
-      this.postservice.getAllPostsData().subscribe (
-        (response: { success: any; data: Post[]; }) => { 
-          if (response.success) {
-            this.posts = response.data.reverse();
-          }
-          this. loading = false;
-        },
-      (error: { message: string; }) => {
-      console.error('Error : ' + error.message);
-      }
-      );
-    }
+  private populatePosts() {
+    this.loading = false;
+    this.postService
+      .getAllPostsData()
+      .pipe(
+        switchMap((post) => {
+          this.posts = post.data.reverse();
+          return this.route.queryParamMap;
+        })
+      )
+      .subscribe((params) => {
+        this.category = params.get('category');
+        this.filterPosts();
+      });
+  }
+
+  private filterPosts() {
+    this.filteredPosts = this.category
+      ? this.posts.filter((post) => {
+          return post.categoryName === this.category;
+        })
+      : this.posts;
+  }
 }

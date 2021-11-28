@@ -2,7 +2,7 @@
 <div class="container">
   <div class="d-flex justify-content-center row mt-4">
     <div class="col-md-3">
-      <app-category></app-category>
+      <app-category [category]="category"></app-category>
     </div>
     <div class="col-md-8">
       <div class="feed">
@@ -31,8 +31,8 @@
         <app-loader *ngIf="loading; else postFeed"></app-loader>
 
         <ng-template #postFeed>
-          <div class="row" *ngIf="posts">
-            <div *ngFor="let post of posts; let i = index">
+          <div class="row" *ngIf="filteredPosts">
+            <div *ngFor="let post of filteredPosts; let i = index">
               <div class="col">
                 <app-post-card [post]="post"></app-post-card>
               </div>

@@ -1,3 +1,4 @@
+import { MessageService } from './../../../services/message.service';
 import { Component } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
@@ -8,6 +9,9 @@ import {
 } from '@angular/fire/storage/';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { PostService } from 'src/app/services/post.service';
+import { ToastrService } from 'ngx-toastr';
+import { CategoryService } from 'src/app/services/category.service';
+import { Category } from 'src/app/models/category.model';
 
 @Component({
   selector: 'app-post-form',
@@ -24,16 +28,24 @@ export class PostFormComponent {
   downloadableURL = '';
   task: AngularFireUploadTask | undefined;
   progressValue: Observable<number> | undefined;
+  categories: Category[] = [];
 
   constructor(
     public activeModal: NgbActiveModal,
     private fireStorage: AngularFireStorage,
     public afAuth: AngularFireAuth,
-    private postService: PostService
+    private postService: PostService,
+    private toastr: ToastrService,
+    private messageService: MessageService,
+    private categoryService: CategoryService
   ) {
     afAuth.authState.subscribe((user) => {
       this.user = user;
     });
+  }
+
+  ngOnInit(): void {
+    this.getAllCategories();
   }
 
   publishPost(form: Post) {
@@ -46,8 +58,9 @@ export class PostFormComponent {
 
     this.postService.addPost(post).subscribe(
       (res) => {
-        console.log(res);
+        this.messageService.setMessage('Post Added');
         this.activeModal.close();
+        this.toastr.success('Post published successfully..!');
       },
       (err) => {
         console.error(err);
@@ -83,5 +96,13 @@ export class PostFormComponent {
       //this.toastr.error('No images selected..!');
       this.downloadableURL = '';
     }
+  }
+
+  getAllCategories() {
+    this.categoryService.getAllCategoryData().subscribe((response) => {
+      if (response.success) {
+        this.categories = response.data;
+      }
+    });
   }
 }

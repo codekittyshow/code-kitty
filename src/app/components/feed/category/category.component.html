@@ -1,8 +1,22 @@
 <div class="sticky-top">
   <div class="list-group">
-    <a class="list-group-item list-group-item-action">All Categories</a>
+    <a
+      class="list-group-item list-group-item-action"
+      [class.active]="!category"
+      routerLink="/feed"
+      >All Categories</a
+    >
 
-    <a class="list-group-item list-group-item-action"> Pet Care </a>
-    <a class="list-group-item list-group-item-action"> Medical </a>
+    <app-loader *ngIf="loading"></app-loader>
+
+    <a
+      *ngFor="let c of categories"
+      routerLink="/feed"
+      [queryParams]="{ category: c.name }"
+      class="list-group-item list-group-item-action"
+      [class.active]="category === c.name"
+    >
+      {{ c.name }}
+    </a>
   </div>
 </div>
