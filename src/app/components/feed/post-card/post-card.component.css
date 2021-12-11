@@ -1,0 +1,14 @@
+.feed-icon a {
+    font-size: 13px;
+    margin: 0 10px;
+}
+
+.feed-icon a:hover {
+    cursor: pointer;
+}
+
+.feed-icon .delete {
+    color: red;
+    margin-right: 5px;
+}
+

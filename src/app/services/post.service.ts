@@ -26,6 +26,14 @@ export class PostService {
     return this.http.post<Post>(this.fullUrl, post);
   }
 
+  public update(post: Post) {
+    return this.http.put<Post>(this.fullUrl, post);
+  }
+
+  public delete(post: Post) {
+    return this.http.delete<{ success: boolean; data: Post[]; message: string }>(`${this.fullUrl}/${post._id}`);
+  }
+
   // GET All posts with users
   public getAllPostsData() {
     const PATH = `${this.fullUrl}/users/all`;

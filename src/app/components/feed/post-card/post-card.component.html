@@ -32,8 +32,20 @@
         </div>
       </div>
       <div class="feed-icon px-2">
+        <a 
+          class="delete"
+          *ngIf="inMyPosts === true"
+          (click)="onDelete()">
+          Delete
+        </a>
+
+        <a 
+          class="edit"
+          *ngIf="inMyPosts === true"
+          (click)="onEdit()">
+          Edit
+        </a>
         <i class="fa fa-ellipsis-v text-black-50"></i>
-        <i class="fa fa-pen text-black-50"></i>
       </div>
     </div>
   </div>
