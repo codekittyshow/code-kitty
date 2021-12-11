@@ -13,21 +13,27 @@
       <div class="d-flex flex-row align-items-center feed-text px-2">
         <img
           [src]="post.user.photoURL"
-          *ngIf="post.user.photoURL"
+          *ngIf="post.user && post.user.photoURL"
           class="rounded-circle me-2"
           width="45"
           alt=""
         />
         <div class="d-flex flex-column flex-wrap ml-2">
-          <span class="font-weight-bold">{{ post.user.displayName }}</span
-          ><span class="text-black-50 time" style="font-size: 10pt"
-            >Published on {{ post.createdDate | date }} |
-            {{ post.categoryName }}</span
-          >
+          <span 
+            class="font-weight-bold"
+            *ngIf="post.user">
+            {{ post.user.displayName }}
+          </span>
+          <span
+            class="text-black-50 time"
+            style="font-size: 10pt">
+            Published on {{ post.createdDate | date }} | {{ post.categoryName }}
+          </span>
         </div>
       </div>
       <div class="feed-icon px-2">
         <i class="fa fa-ellipsis-v text-black-50"></i>
+        <i class="fa fa-pen text-black-50"></i>
       </div>
     </div>
   </div>

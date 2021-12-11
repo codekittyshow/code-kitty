@@ -29,7 +29,12 @@ export class PostService {
   // GET All posts with users
   public getAllPostsData() {
     const PATH = `${this.fullUrl}/users/all`;
-    return this.http.get<{success:boolean ; data : Post[];message:string}>(PATH);
+    return this.http.get<{ success: boolean; data: Post[]; message: string }>(PATH);
   }
 
+  // GET MY posts 
+  public getMyPosts(ID: any) {
+    const PATH = `${this.fullUrl}/user/${ID}`;
+    return this.http.get<{ success: boolean; data: Post[]; message: string }>(PATH);
+  }
 }
