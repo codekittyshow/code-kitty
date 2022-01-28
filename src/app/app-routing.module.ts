@@ -1,9 +1,13 @@
-import { HomeComponent } from './components/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { FeedComponent } from './components/feed/feed.component';
-import { Page404Component } from './components/page404/page404.component';
+
 import { AuthGuard } from './guards/auth.guard';
+
+import { HomeComponent } from './components/home/home.component';
+import { FeedComponent } from './components/feed/feed.component';
+import { MyPostsComponent } from './components/my-posts/my-posts.component';
+
+import { Page404Component } from './components/page404/page404.component';
 
 const routes: Routes = [
   {
@@ -13,6 +17,11 @@ const routes: Routes = [
   {
     path: 'feed',
     component: FeedComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'my-posts',
+    component: MyPostsComponent,
     canActivate: [AuthGuard],
   },
   {

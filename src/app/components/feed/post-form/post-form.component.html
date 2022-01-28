@@ -7,7 +7,7 @@
       <form #postForm="ngForm" (ngSubmit)="publishPost(postForm.value)">
         <div class="form-group mb-3">
           <textarea
-            ngModel
+            [(ngModel)]="post.description"
             name="description"
             id="description"
             class="form-control"
@@ -19,7 +19,7 @@
         </div>
         <div class="form-group mb-3">
           <select
-            ngModel
+            [(ngModel)]="post.categoryName"
             name="categoryName"
             id="categoryName"
             class="form-control"
@@ -31,7 +31,7 @@
             </option>
           </select>
         </div>
-        <div class="form-group mb-3">
+        <div class="form-group mb-3" *ngIf="!isEdit">
           <input
             name="imageURL"
             id="imageURL"
@@ -73,7 +73,7 @@
           >
             Close
           </button>
-          <button type="submit" class="btn btn-primary mx-2">Publish</button>
+          <button type="submit" class="btn btn-primary mx-2">{{ isEdit ? 'Update' : 'Publish'}}</button>
         </div>
       </form>
     </div>

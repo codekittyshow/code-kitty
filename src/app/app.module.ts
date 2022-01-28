@@ -18,6 +18,7 @@ import { CategoryComponent } from './components/feed/category/category.component
 import { PostFormComponent } from './components/feed/post-form/post-form.component';
 import { FormsModule } from '@angular/forms';
 import { ToastrModule } from 'ngx-toastr';
+import { MyPostsComponent } from './components/my-posts/my-posts.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { ToastrModule } from 'ngx-toastr';
     PostCardComponent,
     CategoryComponent,
     PostFormComponent,
+    MyPostsComponent,
   ],
 
   imports: [

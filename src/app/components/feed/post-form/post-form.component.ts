@@ -1,5 +1,5 @@
 import { MessageService } from './../../../services/message.service';
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { Post } from 'src/app/models/post.model';
@@ -19,7 +19,8 @@ import { Category } from 'src/app/models/category.model';
   styleUrls: ['./post-form.component.css'],
 })
 export class PostFormComponent {
-  post: any = {};
+  public post: Post = {};
+  
   user: any | null;
   createdDate = new Date().toISOString();
 
@@ -29,6 +30,9 @@ export class PostFormComponent {
   task: AngularFireUploadTask | undefined;
   progressValue: Observable<number> | undefined;
   categories: Category[] = [];
+
+  @Input() inputPost: Post = {};
+  public isEdit : boolean = false
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -46,6 +50,11 @@ export class PostFormComponent {
 
   ngOnInit(): void {
     this.getAllCategories();
+    this.isEdit = (this.inputPost !== undefined && this.inputPost !== {}) ? true : false;
+
+    if(this.isEdit === true) {
+      this.post = this.inputPost;
+    }
   }
 
   publishPost(form: Post) {
@@ -56,16 +65,29 @@ export class PostFormComponent {
       imageURL: this.downloadableURL,
     };
 
-    this.postService.addPost(post).subscribe(
-      (res) => {
-        this.messageService.setMessage('Post Added');
-        this.activeModal.close();
-        this.toastr.success('Post published successfully..!');
-      },
-      (err) => {
-        console.error(err);
-      }
-    );
+    if(this.isEdit === true) {
+      this.postService.update(post).subscribe(
+        (res) => {
+          this.messageService.setMessage('Post Updated');
+          this.activeModal.close();
+          this.toastr.success('Post updated successfully..!');
+        },
+        (err) => {
+          console.error(err);
+        }
+      )
+    } else {
+      this.postService.addPost(post).subscribe(
+        (res) => {
+          this.messageService.setMessage('Post Added');
+          this.activeModal.close();
+          this.toastr.success('Post published successfully..!');
+        },
+        (err) => {
+          console.error(err);
+        }
+      );
+    }
   }
 
   imgPreview(event: any) {
