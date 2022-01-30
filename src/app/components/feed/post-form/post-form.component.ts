@@ -20,7 +20,7 @@ import { Category } from 'src/app/models/category.model';
 })
 export class PostFormComponent {
   public post: Post = {};
-  
+
   user: any | null;
   createdDate = new Date().toISOString();
 
@@ -32,7 +32,7 @@ export class PostFormComponent {
   categories: Category[] = [];
 
   @Input() inputPost: Post = {};
-  public isEdit : boolean = false
+  public isEdit: boolean = false;
 
   constructor(
     public activeModal: NgbActiveModal,
@@ -50,10 +50,16 @@ export class PostFormComponent {
 
   ngOnInit(): void {
     this.getAllCategories();
-    this.isEdit = (this.inputPost !== undefined && this.inputPost !== {}) ? true : false;
 
-    if(this.isEdit === true) {
+    if (this.inputPost._id == undefined) {
+      this.isEdit = false;
+    } else {
+      this.isEdit = true;
       this.post = this.inputPost;
+    }
+
+    if (this.post._id == undefined) {
+      this.post.categoryName = '';
     }
   }
 
@@ -65,7 +71,7 @@ export class PostFormComponent {
       imageURL: this.downloadableURL,
     };
 
-    if(this.isEdit === true) {
+    if (this.isEdit === true) {
       this.postService.update(post).subscribe(
         (res) => {
           this.messageService.setMessage('Post Updated');
@@ -75,7 +81,7 @@ export class PostFormComponent {
         (err) => {
           console.error(err);
         }
-      )
+      );
     } else {
       this.postService.addPost(post).subscribe(
         (res) => {
