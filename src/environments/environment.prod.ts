@@ -1,4 +1,4 @@
-const API_HOST = 'http://20.120.64.178:8080'
+const API_HOST = 'http://20.119.105.56:8080'
 
 export const environment = {
   production: false,
