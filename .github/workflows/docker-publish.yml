@@ -1,0 +1,35 @@
+name: GitHub Registry Image Push
+on:
+  push:
+    branches:
+      - main
+      
+jobs:
+  build:
+    runs-on:
+      - ubuntu-latest
+    env:
+      SERVICE_NAME: ghcr.io/codekittyshow/code-kitty
+      CONTAINER_REGISTRY: ghcr.io
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set Version
+        id: event-version
+        run: echo ::set-output name=SOURCE_TAG::${GITHUB_REF#refs/tags/}
+      - name: Cache Docker layers
+        uses: actions/cache@v2
+        with:
+            path: /tmp/.buildx-cache
+            key: ${{ runner.os }}-buildx-${{ github.sha }}
+            restore-keys: |
+              ${{ runner.os }}-buildx-
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.CONTAINER_REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GH_TOKEN }}
+      - name: Build the Docker image
+        run: docker build --tag ${SERVICE_NAME}:latest --file Dockerfile .
+      - name: GitHub Image Push
+        run: docker push $SERVICE_NAME:latest
