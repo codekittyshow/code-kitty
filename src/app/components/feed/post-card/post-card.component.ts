@@ -1,12 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-
 import { PostService } from 'src/app/services/post.service';
-
 import { Post } from 'src/app/models/post.model';
-
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { PostFormComponent } from '../post-form/post-form.component';
 import { MessageService } from 'src/app/services/message.service';
 import { ToastrService } from 'ngx-toastr';
@@ -17,7 +13,6 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PostCardComponent implements OnInit {
   @Input('post') post: Post = {};
-
   public inMyPosts: boolean = false;
 
   constructor(
@@ -25,15 +20,15 @@ export class PostCardComponent implements OnInit {
     private modalService: NgbModal,
     private postService: PostService,
     private messageService: MessageService,
-    private toastr: ToastrService,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
-    this.activatedRoute.url.subscribe(result => {
-      if(result.length> 0) {
+    this.activatedRoute.url.subscribe((result) => {
+      if (result.length > 0) {
         this.inMyPosts = result[0].path === 'my-posts' ? true : false;
       }
-    })
+    });
   }
 
   public onEdit(): void {
@@ -41,16 +36,15 @@ export class PostCardComponent implements OnInit {
       size: 'lg',
       backdrop: 'static',
     });
-
     modalRef.componentInstance.inputPost = this.post;
   }
 
   public onDelete(): void {
-    this.postService.delete(this.post).subscribe(result => {
-      if(result.success) {
+    this.postService.delete(this.post).subscribe((result) => {
+      if (result.success) {
         this.messageService.setMessage('Post Deleted');
-          this.toastr.success('Post deleted successfully..!');
+        this.toastr.success('Post deleted successfully..!');
       }
-    })
+    });
   }
 }
